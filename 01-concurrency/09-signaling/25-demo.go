@@ -10,7 +10,8 @@ func main() {
 	fmt.Println("Hit ENTER to stop!")
 	go func() {
 		fmt.Scanln()
-		close(stopCh)
+		// close(stopCh)
+		stopCh <- struct{}{}
 	}()
 	ch := genNos(stopCh)
 	for no := range ch {
