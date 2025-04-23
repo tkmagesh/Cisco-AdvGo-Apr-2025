@@ -81,3 +81,36 @@ go run -race <filename.go>
 ```shell
 go build -race <filename.go>
 ```
+
+#### Channels
+##### Creating a channel
+```go
+var ch chan int
+ch = make(chan int)
+```
+**OR**
+```go
+var ch chan int = make(chan int)
+```
+**OR**
+```go
+var ch = make(chan int)
+```
+**OR**
+```go
+ch := make(chan int)
+```
+
+##### Channel Operations
+Using the channel operator **<-**
+###### Send Operation
+```go
+ch <- 100
+```
+###### Receive Operation
+```go
+data := <- ch
+```
+###### Channel Behavior
+![image](./images/channel-behavior.png)
+---
