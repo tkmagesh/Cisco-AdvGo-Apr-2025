@@ -58,3 +58,18 @@
 ### Concurrency Vs Parallelism
 ![image](./images/concurrency-vs-parallelism.png)
 ---
+### Go Concurrency Model
+![image](./images/go-concurrency.png)
+
+#### Language Support for concurrency
+- "go", "range", "select-case" keywords
+- "chan" data type
+- "<-" operator
+
+#### Standard Library Support
+- "sync" package
+- "sync/atomic" package
+
+#### sync.WaitGroup
+- semaphore based counter
+- Has the ability to block the execution of a function until the counter becomes 0
