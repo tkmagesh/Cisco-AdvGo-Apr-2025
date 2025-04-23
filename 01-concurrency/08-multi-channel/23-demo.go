@@ -34,6 +34,8 @@ func main() {
 			fmt.Println("[select] data sent to ch3")
 		case d2 := <-ch2:
 			fmt.Println(d2)
+		default:
+			fmt.Println("No channel operations were successful!")
 		}
 	}
 }
