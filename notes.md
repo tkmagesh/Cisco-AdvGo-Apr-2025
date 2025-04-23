@@ -45,3 +45,16 @@
 
 ## Training Repository
 - https://github.com/tkmagesh/cisco-advgo-apr-2025
+
+## Concurrency
+- Design of an application in such a way that the application has more than one execution path
+
+### Cooperative Multitasking
+![image](./images/cooperative-multitasking.png)
+---
+### Preemptive Multitasking
+![image](./images/preemptive-multitasking.png)
+---
+### Concurrency Vs Parallelism
+![image](./images/concurrency-vs-parallelism.png)
+---
