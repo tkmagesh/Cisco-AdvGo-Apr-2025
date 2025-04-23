@@ -11,7 +11,8 @@ func main() {
 	ch := genNos()
 	for {
 		time.Sleep(500 * time.Millisecond)
-		if data, isOpen := <-ch; isOpen {
+		data, isOpen := <-ch
+		if isOpen {
 			fmt.Println(data)
 			continue
 		}
