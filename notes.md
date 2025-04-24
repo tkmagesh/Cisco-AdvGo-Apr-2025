@@ -145,3 +145,8 @@ data := <- ch
 - using standard library (database/sql)
 - using sqlx (wrapper for database/sql)
 - using sqlc (code generator)
+
+### Http Services
+```shell
+curl http://localhost:8080/products --header "Content-Type:application/json" --request POST --data '{"id":200,"name":"Stylus", "cost":1000, "units":5}'
+```
