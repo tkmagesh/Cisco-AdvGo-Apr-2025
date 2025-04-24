@@ -22,6 +22,7 @@ func main() {
 		fmt.Println(data)
 	}
 	fmt.Println("Stop signal received... shutting down!")
+
 }
 
 func stop() <-chan struct{} {

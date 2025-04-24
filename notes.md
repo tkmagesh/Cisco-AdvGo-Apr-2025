@@ -114,3 +114,29 @@ data := <- ch
 ###### Channel Behavior
 ![image](./images/channel-behavior.png)
 ---
+
+### Context
+- Cancel Propagation
+- All context types inherit from interface `context.Context`
+- `context.Context`
+    - `Done()` - returns a channel that gets unblocked when a cancel signal is received
+- Creation
+    - Root context
+        - `context.Background()`
+    - context children
+        - `context.WithCancel(parentCtx)`
+            - returns a context & cancel function
+            - programmatic cancellation
+            - invoking the returned `cancel` function will send the "cancellation" signal to all the context children
+
+        - `context.WithTimeout(parentCtx, ...)` [relative time]
+        - `context.WithDeadline(parentCtx, ...)` [absolute time]
+            - returns a context & cancel function
+            - Time based cancellation
+            - automatically sends cancellation signal when timeout occurs
+            - can also be overriden by invoking the `cancel` function
+
+        - `context.WithValue(parentCtx, ...)`
+            - returns a context
+            - non-cancellable
+            - used for sharing data across context hierarchies
