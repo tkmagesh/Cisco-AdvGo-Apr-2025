@@ -140,3 +140,8 @@ data := <- ch
             - returns a context
             - non-cancellable
             - used for sharing data across context hierarchies
+
+### Database programming
+- using standard library (database/sql)
+- using sqlx (wrapper for database/sql)
+- using sqlc (code generator)
