@@ -79,11 +79,19 @@ func CustomersHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "The customers list will be served")
 }
 
+// Middlewares
+func loggerMiddleware(handler func(http.ResponseWriter, *http.Request)) func(http.ResponseWriter, *http.Request) {
+	return func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("%s - %s\n", r.Method, r.URL.Path)
+		handler(w, r)
+	}
+}
+
 func main() {
 	appServer := NewAppServer()
-	appServer.Add("/", IndexHandler)
-	appServer.Add("/products", ProductsHandler)
-	appServer.Add("/customers", CustomersHandler)
+	appServer.Add("/", loggerMiddleware(IndexHandler))
+	appServer.Add("/products", loggerMiddleware(ProductsHandler))
+	appServer.Add("/customers", loggerMiddleware(CustomersHandler))
 	if err := http.ListenAndServe(":8080", appServer); err != nil {
 		log.Println("Error :", err)
 	}
