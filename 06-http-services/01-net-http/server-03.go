@@ -38,7 +38,7 @@ func (ps *ProductsStore) GetAll(ctx context.Context) ([]Product, error) {
 	// TODO : implement logging
 	log.Printf("[ProductsStore.GetAll()][%s] - returning products\n", ctx.Value("trace-id"))
 	log.Printf("[ProductsStore.GetAll()][%s] - retrieving products from db\n", ctx.Value("trace-id"))
-	time.Sleep(5 * time.Second) // simulating time consuming db communication
+	time.Sleep(2 * time.Second) // simulating time consuming db communication
 	if ctx.Err() == context.DeadlineExceeded {
 		log.Printf("[ProductsStore.GetAll()][%s] - timeout from db\n", ctx.Value("trace-id"))
 		return nil, errors.New("request timedout")
@@ -60,6 +60,10 @@ type AppServer struct {
 	middlewares []MiddlewareFunction
 }
 
+/*
+=> traceMiddleware(loggerMiddleware(timeoutMiddleware(IndexHandler)))
+middlewares[ traceMiddleware, loggerMiddleware, timeoutMiddleware]
+*/
 func (appServer *AppServer) Add(pattern string, handlerFn HandlerFunction) {
 	for i := len(appServer.middlewares) - 1; i >= 0; i-- {
 		middleware := appServer.middlewares[i]
