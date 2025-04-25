@@ -200,3 +200,36 @@ curl http://localhost:8080/products --header "Content-Type:application/json" --r
         Verification:
             the binaries (protoc-gen-go, protoc-gen-go-grpc) must be present in $GOPATH/bin folder
     
+
+## Testing
+### gotest (https://github.com/rakyll/gotest)
+```shell
+go install github.com/rakyll/gotest
+```
+
+- Run the tests
+```shell
+go test ./... -v
+
+# OR
+
+gotest ./... -v
+```
+
+### Mockery
+- generating Mock types
+Installation
+```shell
+go install github.com/vektra/mockery/v3@v3.2.4
+```
+
+- Generate mocks
+```shell
+mockery
+```
+
+### Code Coverage
+```shell
+go test ./... -coverprofile=cover.out
+go tool cover -html=cover.out
+```

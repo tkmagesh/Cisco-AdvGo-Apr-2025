@@ -2,12 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"time"
 )
-
-type TimeProvider interface {
-	GetCurrent() time.Time
-}
 
 type Greeter struct {
 	UserName     string
