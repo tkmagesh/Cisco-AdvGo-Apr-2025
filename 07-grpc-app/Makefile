@@ -7,4 +7,4 @@ client:
 server:
 	go run server/server.go
 
-PHONY: generate client server
+.PHONY: generate client server
