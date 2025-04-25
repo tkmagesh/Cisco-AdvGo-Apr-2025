@@ -1,23 +1,66 @@
-syntax = "proto3";
+syntax="proto3";
 
 package proto;
 
 option go_package = "/proto";
 
-// Service Contract
-service AppService {
-    
-    // Operation Contract
-    rpc Add (AddRequest) returns (AddResponse);
-    
-}
-
 // Data Contracts
-message AddRequest {
+message AddRequest{
     int64 x = 1;
     int64 y = 2;
 }
 
-message AddResponse {
-    int64 result = 1;
+message AddResponse{
+    int64 result=1;
+}
+
+// Server streaming
+message PrimeRequest {
+    int64 start = 1;
+    int64 end = 2;
+}
+
+message PrimeResponse {
+    int64 primeNo = 1;
+}
+
+message AggregateRequest {
+    int64 no = 1;
+}
+
+message AggregateResponse {
+    int64 sum = 1;
+    int64 min = 2;
+    int64 max = 3;
+}
+
+// / bidirectional streaming
+message PersonName {
+    string firstName=1;
+    string lastName=2;
+}
+
+message GreetRequest {
+    PersonName person = 1;
+}
+
+message GreetResponse {
+    string message = 1;
+}
+
+// Service Contract
+service AppService {
+    // Operation Contracts
+
+    // Request Response Pattern
+    rpc Add (AddRequest) returns (AddResponse);
+
+    // Server streaming
+    rpc GeneratePrimes (PrimeRequest) returns (stream PrimeResponse);
+
+    // Client Streaming
+    rpc Aggregate (stream AggregateRequest) returns (AggregateResponse);
+
+    // Bidirectional streaming
+    rpc Greet (stream GreetRequest) returns (stream GreetResponse);
 }
