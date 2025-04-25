@@ -14,7 +14,7 @@ import (
 
 func main() {
 	options := grpc.WithTransportCredentials(insecure.NewCredentials())
-	clientConn, err := grpc.NewClient("localhost:50051", options)
+	clientConn, err := grpc.NewClient("localhost:50052", options)
 	if err != nil {
 		log.Fatalln(err)
 	}

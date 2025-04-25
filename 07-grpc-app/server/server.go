@@ -127,7 +127,7 @@ func (asi *AppServiceImpl) Greet(serverStream proto.AppService_GreetServer) erro
 
 func main() {
 	asi := &AppServiceImpl{}
-	listener, err := net.Listen("tcp", ":50051")
+	listener, err := net.Listen("tcp", ":50052")
 	if err != nil {
 		log.Fatalln(err)
 	}
