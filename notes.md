@@ -150,3 +150,53 @@ data := <- ch
 ```shell
 curl http://localhost:8080/products --header "Content-Type:application/json" --request POST --data '{"id":200,"name":"Stylus", "cost":1000, "units":5}'
 ```
+
+## GRPC
+- Alternative to HTTP based restful services
+- Apt for microservices communication
+- Uses HTTP/2 for communication
+- Communication Patterns
+    - Request & Response (1 Req & 1 Res )
+    - Server Streaming (1 Req & Stream of Resps)
+    - Client Streaming (Stream of reqs & 1 Res)
+    - Bidirectional Streaming (Stream of reqs & Stream of resps)
+- Protocol Buffers for serialization
+    - Allows for sharing the schema well in advance
+    - Works well with known clients (microservices)
+    - Enables ONLY the data (without any annotation/label) for communication
+- Multilanguage support
+    - Go
+    - .Net
+    - JS
+    - Java
+    - C++
+### Steps
+    - Define data contracts (protobuf)
+    - Define service contract (protobuf)
+        - Define operation contracts (protobuf)
+    - Generate the Proxy & Stub
+    - Implement the service and host it using the Stub
+    - Create a client that communicates to the sevice using the Proxy
+
+### Tools Installation 
+    1. Protocol Buffers Compiler (protoc tool)
+        Windows:
+            Download the file, extract and keep in a folder (PATH) accessble through the command line
+            https://github.com/protocolbuffers/protobuf/releases/download/v24.4/protoc-24.4-win64.zip
+        Mac:
+```shell
+            brew install protobuf
+```
+        Verification:
+```shell
+            protoc --version
+```
+
+    2. Go plugins (installed in the GOPATH/bin folder)
+```shell
+            go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28
+            go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.2
+```
+        Verification:
+            the binaries (protoc-gen-go, protoc-gen-go-grpc) must be present in $GOPATH/bin folder
+    
